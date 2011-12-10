@@ -1,0 +1,31 @@
+= xls2json
+
+xls2json reads an existing Exccel document and returns its content as JSON.
+
+== Usage
+
+You may want to read all sheets. This can be done like this:
+
+(all-spreadsheets-to-json "Filename.xls")
+
+> { "SheetName1" <content_of_sheet_1_as_string> "SheetName2" <content_of_sheet_2_as_string> }
+
+Where all values in that hash (i.e. content_of_sheet_1_as_string, content_of_sheet_2_as_string, etc) are JSON objects encoded as strings.
+
+If you want to convert just one sheet into JSON, use this:
+
+(spreadsheet-to-json "Filename.xls" "SheetName1")
+
+> <content_of_sheet_1_as_string>
+
+The result has the same format as mentioned above.
+
+== License
+
+Copyright (c) 2010 Marcelo Giorgi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
