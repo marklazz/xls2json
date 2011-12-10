@@ -5,5 +5,5 @@
                  [vimclojure/server "2.2.0"]
                  [org.clojure/clojure-contrib "1.2.0"]
                  [cheshire "2.0.4"]
-                 [dk.ative/docjure "1.6.0-SNAPSHOT"]
+                 [dk.ative/docjure "1.5.0"]
                  ])
