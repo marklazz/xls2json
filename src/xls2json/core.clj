@@ -1,6 +1,6 @@
 (ns xls2json.core
   (:require [cheshire.core :as json])
-  (:import org.apache.poi.ss.usermodel.Cell)
+  (:import (org.apache.poi.ss.usermodel Workbook Sheet Row Cell))
   (:require [dk.ative.docjure.spreadsheet :as docjure]))
 
 (defmethod docjure/read-cell-value Cell/CELL_TYPE_ERROR [cv _] "ERROR")
@@ -9,7 +9,8 @@
   (try (docjure/read-cell cell) (catch Exception e "ERROR")))
 
 (defn col-seq
-  [row]
+  [^Row row]
+  (docjure/assert-type row Row)
   (let [
         number-of-cells (.getPhysicalNumberOfCells row)
         ]
@@ -21,16 +22,18 @@
           (conj result value)))))
 )
 
-(defn row-seq [sheet]
+(defn row-seq [^Sheet sheet]
+  (docjure/assert-type sheet Sheet)
   (let [wb (docjure/load-workbook "Test.xls")
         sheet (docjure/select-sheet "All" wb)
         rows (docjure/row-seq sheet)
         evaluator (.. wb getCreationHelper createFormulaEvaluator)]
       (map col-seq rows)))
 
-(defn workbook-to-json
-  ([sheet] (let [rows (row-seq sheet)]
-               (json/encode rows))))
+(defn workbook-to-json [^Sheet sheet]
+  (docjure/assert-type sheet Sheet)
+  (let [rows (row-seq sheet)]
+               (json/encode rows)))
 
 (defn spreadsheet-to-json [filename sheet-name]
   (let [wb (docjure/load-workbook filename)
@@ -40,6 +43,6 @@
 (defn all-spreadsheets-to-json [filename]
   (let [wb (docjure/load-workbook filename)
         sheets (docjure/sheet-seq wb)]
-    (json/encode (reduce #(assoc %1 (.getSheetName %2) (workbook-to-json %)) {} sheets))
+    (json/encode (reduce #(assoc %1 (.getSheetName %2) (workbook-to-json %2)) {} sheets))
   )
 )
