@@ -26,8 +26,7 @@
         sheet (docjure/select-sheet "All" wb)
         rows (docjure/row-seq sheet)
         evaluator (.. wb getCreationHelper createFormulaEvaluator)]
-      (for [row rows]
-        (col-seq row))))
+      (map col-seq rows)))
 
 (defn workbook-to-json
   ([sheet] (let [rows (row-seq sheet)]
