@@ -33,11 +33,6 @@
   ([sheet] (let [rows (row-seq sheet)]
                (json/encode rows))))
 
-(defn workbook-to-json-old
-  ([wb sheet] (let [rows (docjure/row-seq sheet)]
-               (json/encode (map #(map read-cell-safe %) rows))))
-)
-
 (defn spreadsheet-to-json [filename sheet-name]
   (let [wb (docjure/load-workbook filename)
         sheet (docjure/select-sheet sheet-name wb)]
