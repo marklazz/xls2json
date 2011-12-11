@@ -1,4 +1,4 @@
-(defproject xls2json "1.0.0"
+(defproject xls2json "1.0.1"
   :description "Converts Excel files (.xls and .xlsx) to plain JSON data"
   :url "http://github.com/marklazz/xls2json"
   :dependencies [[org.clojure/clojure "1.2.0"]
