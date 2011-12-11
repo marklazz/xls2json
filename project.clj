@@ -6,6 +6,4 @@
                  [cheshire "2.0.4"]
                  [dk.ative/docjure "1.5.0"]
                  ]
-  :dev-dependencies [[vimclojure/server "2.2.0"]
-                     [org.clojars.ibdknox/lein-nailgun "1.1.1"]
-                     ])
+  :dev-dependencies [[org.clojars.ibdknox/lein-nailgun "1.1.1"]])
