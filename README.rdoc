@@ -1,6 +1,6 @@
 = xls2json
 
-xls2json reads an existing Exccel document and returns its content as JSON.
+xls2json reads an existing Excel document and returns its content as JSON.
 
 == Usage
 
